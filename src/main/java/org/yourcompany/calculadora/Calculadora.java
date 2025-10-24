@@ -1,6 +1,7 @@
 
 
 package org.yourcompany.calculadora;
+import java.util.Random;
 
 /**
  *
@@ -17,6 +18,24 @@ public class Calculadora {
         System.out.println("Nombre de dígits de 56789: " + nombreDigits(56789));
         System.out.println("Nombre de dígits de -101010: " + nombreDigits(-101010));
         System.out.println("Nombre de dígits de 0: " + nombreDigits(0));
+
+        int a = moneda(50);
+        System.out.println("Numero cares " + a);
+        System.out.println("Numero creus " + (50 - a));
+
+        int b = moneda(100);
+        System.out.println("Numero cares " + b);
+        System.out.println("Numero creus " + (100 - b));
+
+        int c = moneda(10000);
+        System.out.println("Numero cares " + c);
+        System.out.println("Numero creus " + (10000 - c));
+
+        System.out.println("la entrada cuesta :" + cinema(15, true, true) + "€");
+        System.out.println("la entrada cuesta :" + cinema(15, true, false) + "€");
+        System.out.println("la entrada cuesta :" + cinema(15, false, true) + "€");
+        System.out.println("la entrada cuesta :" + cinema(15, false, false) + "€");
+
 
         // Exemples de crida per al mètode sumaPrimersNumeros
         // System.out.println("Suma dels primers 5 números: " + sumaPrimersNumeros(5));
@@ -62,5 +81,33 @@ public class Calculadora {
         return comptador;
     }
 
+    public static int moneda(int numero) {
+        Random random = new Random();
+        int cares = 0;
+        int creus = 0;
 
+        for (int i = 1; i <= numero; i++) {
+            int resultat = random.nextInt(2); // 0 = cara, 1 = creu
+
+            if (resultat == 0) {
+                cares++;
+            } else {
+                creus++;
+            }
+        }
+
+        return cares;
+    }
+
+    public static double cinema (double entrada, boolean dia, boolean carnetJove) {          
+                   
+            if (dia){
+                entrada = entrada + (entrada * 0.1);
+            }
+            if(carnetJove){
+                entrada = entrada - (entrada * 0.15);
+            }
+            return entrada;
+
+    }
 }
